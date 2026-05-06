@@ -1,5 +1,5 @@
 # Esta función analiza un mensaje de error y lo clasifica
-
+# classifier.py
 def clasificar_error(msg):
     # Convertimos el texto a minúsculas para evitar errores de comparación
     msg = str(msg).lower()
@@ -27,7 +27,7 @@ def clasificar_error(msg):
     # Error genérico de servidor de correo
     elif "smtp" in msg:
         return "SMTP_ERROR"
-    #Nuevos errores detectados en los últimos meses, especialmente con Gmail y algunos proveedores italianos
+#Nuevos errores detectados en los últimos meses, especialmente con Gmail y algunos proveedores italianos
 # 1. IP / DOMAIN REPUTATION (NUEVO - CRÍTICO)
     # Detecta bloqueos por listas negras (Cloudmark, Aruba, etc.)
     if any(x in msg for x in ["cloudmark", "reputation", "unsolicited mail", "blocked", "35.205.6.117"]):
