@@ -3,7 +3,7 @@ import os
 from pathlib import Path
 
 # Ruta absoluta (La más segura si no mueves la carpeta Proyectos)
-BASE_PATH = Path("/Users/mariaclara/Desktop/Proyectos/CONSOLAS_SAAS")
+BASE_PATH = Path("/Users/mariaclara/Desktop/Proyectos/CONSOLAS_PROMO")
 
 # Si quieres que sea automática buscando la carpeta "Proyectos" 
 # un nivel arriba de donde está el código:
@@ -11,11 +11,8 @@ BASE_PATH = Path("/Users/mariaclara/Desktop/Proyectos/CONSOLAS_SAAS")
 
 # Estas son las "consolas" o carpetas de trabajo
 CONSOLAS = [
-    "OverQuota","DS","2025",
-    "Or_1","Or_2","Or_3","Or_4","Or_5",
-    "Lore_1","Lore_2",
-    "New_1","New_2",
-    "Mistral_01","Mistral_02","Mistral_03"
+   "BeatlesInLondon","Pontisultamigi","Lechiesedilondra",
+    "Londonchurch","Goticoreligiosopuglia","Pontisultamigi_Mail","BristolParty(B2B)"
 ]
 
 # Dentro de cada consola creamos estas carpetas
