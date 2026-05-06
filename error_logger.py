@@ -13,7 +13,7 @@ def validar_integridad_archivo(file_path, error_dir, audit_log_path):
     if not re.match(pattern, filename):
         with open(audit_log_path, "a", encoding="utf-8") as f:
             f.write(f"--- ERROR NOMBRE --- {pd.Timestamp.now()}\n")
-            f.write(f"ARCHIVO: {filename} | MOTIVO: El nombre no cumple con el formato requerido.\n\n")
+            f.write(f"ARCHIVO: {filename} \n\n    | MOTIVO: El nombre no cumple con el formato requerido.\n\n")
         
         if not os.path.exists(error_dir): os.makedirs(error_dir)
         shutil.move(str(file_path), os.path.join(error_dir, filename))
@@ -28,10 +28,11 @@ def validar_sintaxis_csv(file_path, chunk, error_dir, audit_log_path):
     if not all(col in chunk.columns for col in columnas_esperadas):
         with open(audit_log_path, "a", encoding="utf-8") as f:
             f.write(f"--- ERROR ESTRUCTURA --- {pd.Timestamp.now()}\n")
-            f.write(f"ARCHIVO: {file_path.name} | MOTIVO: Columnas faltantes o corruptas.\n\n")
+            f.write(f"ARCHIVO: {file_path.name} \n\n     | MOTIVO: Columnas faltantes o corruptas.\n\n")
         if not os.path.exists(error_dir): os.makedirs(error_dir)
         shutil.move(str(file_path), os.path.join(error_dir, file_path.name))
         return False
+
     lineas_con_fallo = []
     for idx, row in chunk.iterrows():
         errores_fila = []
@@ -48,9 +49,8 @@ def validar_sintaxis_csv(file_path, chunk, error_dir, audit_log_path):
 
         if errores_fila:
             linea_str = ",".join([str(v) for v in row.values])
-            lineas_con_fallo.append(f"ARCHIVO: {file_path.name} \n LINEA: [{linea_str}] \n FALLOS: {'; '.join(errores_fila)} \n")
-      
-
+            lineas_con_fallo.append(f"ARCHIVO: {file_path.name} \n\n  | LINEA: [{linea_str}] \n\n  | FALLOS: {'; '.join(errores_fila)}")
+            f.write("\n\n ")
     if lineas_con_fallo:
         with open(audit_log_path, "a", encoding="utf-8") as f:
             f.write(f"--- ERROR SINTAXIS --- {pd.Timestamp.now()}\n")
@@ -69,7 +69,7 @@ def generar_error_log(df, consola, output_path, titulo="REPORTE DE MENSAJES"):
     df['error_limpio'] = df['Message'].fillna("").map(clasificar_error)
     
     with open(output_path, "a", encoding="utf-8") as f:
-        f.write(f"CONSOLA: {consola} | TOTAL: {len(df)} registros\n")
+        f.write(f"CONSOLA: {consola} \n\n  | TOTAL: {len(df)} registros\n")
         resumen = df['error_limpio'].value_counts()
         for err, cant in resumen.items():
             f.write(f"{err.upper()}: {cant}\n")
