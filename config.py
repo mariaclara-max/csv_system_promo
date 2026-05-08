@@ -12,7 +12,7 @@ BASE_PATH = Path("/Users/mariaclara/Desktop/Proyectos/CONSOLAS_PROMO")
 # Estas son las "consolas" o carpetas de trabajo
 CONSOLAS = [
    "BeatlesInLondon","Pontisultamigi","Lechiesedilondra",
-    "Londonchurch","Goticoreligiosopuglia","Pontisultamigi_Mail","BristolParty(B2B)"
+    "Londonchurch","Goticoreligiosopuglia","Pontisultamigi_Mail"
 ]
 
 # Dentro de cada consola creamos estas carpetas
